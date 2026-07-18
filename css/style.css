@@ -1,0 +1,820 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    display: flex;
+    background: #f5f6fa;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background: #0b1220;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    overflow-y: auto;
+}
+
+/* Logo */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Links */
+.sidebar a {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 12px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* Bottom section */
+.bottom {
+    margin-top: auto;
+}
+
+/* Content area */
+#content {
+    margin-left: 240px;
+    padding: 20px;
+    width: calc(100% - 240px);
+}
+
+.cards {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(180px, 1fr));
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+.card {
+    background: white;
+    padding: 14px;
+    border-radius: 12px;
+    min-height: 90px;
+    width: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.2s;
+}
+
+@media (max-width: 1200px) {
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.card p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 6px;
+    margin-bottom: 0;
+    color: #0f172a;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.card:nth-child(1) {
+    border-left: 4px solid #38bdf8;
+}
+
+.card:nth-child(2) {
+    border-left: 4px solid #22c55e;
+}
+
+.card:nth-child(3) {
+    border-left: 4px solid #f59e0b;
+}
+
+.login-body {
+    background: #0b1220;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #38bdf8;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-container button:hover {
+    background: #0ea5e9;
+}
+
+#error {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.form-box {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.form-box input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.exam-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exam-card button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===========================
+   Dashboard Sections
+=========================== */
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+#examReadiness,
+#weakSubjects,
+#dailyPlan {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+#examReadiness .exam-card,
+#weakSubjects .exam-card,
+#dailyPlan .exam-card {
+
+    width: 190px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    display: block;
+}
+
+#examReadiness .exam-card b,
+#weakSubjects .exam-card b,
+#dailyPlan .exam-card b {
+
+    display: block;
+
+    font-size: 18px;
+
+    margin-bottom: 10px;
+
+    color: #0f172a;
+}
+
+/* ===========================
+   Weekly Study Graph
+=========================== */
+
+.chart-card {
+    background: #458cfe;
+    border-radius: 14px;
+    padding: 20px;
+    margin: 15px auto 30px auto;
+
+    width: 50%;
+    max-width: 800px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.chart-card canvas {
+
+    width: 100% !important;
+
+    height: 350px !important;
+
+}
+
+.pie-chart-card {
+
+    width: 400px;
+
+    height: 400px;
+
+    margin-top: 20px;
+
+}
+
+.login-container a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.welcome-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.progress-container {
+
+    width: 100%;
+
+    height: 14px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+#journeyProgress {
+
+    height: 100%;
+
+    width: 10%;
+
+    background: #38bdf8;
+
+    transition: 0.5s;
+
+}
+
+
+.goals p {
+
+    color: #475569;
+
+}
+
+.mini-progress {
+
+    height: 8px;
+
+    background: #e2e8f0;
+
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+}
+
+
+.mini-progress div {
+
+    height: 100%;
+
+    background: #38bdf8;
+
+    border-radius: 10px;
+
+}
+
+.welcome-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.8s ease;
+
+}
+
+.welcome-card.completed {
+
+    opacity: 0;
+
+    transform: translateY(-20px);
+
+    max-height: 0;
+
+    padding: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    transition: all 0.8s ease;
+
+}
+
+.metric-bar {
+
+    width: 100%;
+
+    height: 10px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 10px;
+
+}
+
+
+.metric-bar div {
+
+    height: 100%;
+
+    background: #38bdf8;
+
+    border-radius: 20px;
+
+    transition: width 1s ease;
+
+}
+
+.setup-complete {
+
+    animation:
+        celebration 1s ease;
+
+}
+
+
+.celebration {
+
+    text-align: center;
+
+    padding: 40px;
+
+}
+
+
+.celebration h1 {
+
+    font-size: 40px;
+
+    animation:
+        pop 0.8s ease;
+
+}
+
+
+.confetti {
+
+    font-size: 35px;
+
+    animation:
+        float 2s infinite;
+
+}
+
+
+.hide-card {
+
+    opacity: 0;
+
+    transform:
+        translateY(-40px) scale(0.9);
+
+    transition:
+        all 1s ease;
+
+}
+
+
+
+@keyframes celebration {
+
+    from {
+
+        transform:
+            scale(0.8);
+
+        opacity: 0;
+
+    }
+
+
+    to {
+
+        transform:
+            scale(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+@keyframes pop {
+
+    0% {
+
+        transform:
+            scale(0);
+
+    }
+
+
+    70% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes float {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-15px);
+
+    }
+
+
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+.target-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+
+.target-options button {
+
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #f1f5ff;
+
+    color: #333;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+
+}
+
+
+.target-options button:hover {
+
+    background: #6366f1;
+
+    color: white;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(99, 102, 241, 0.25);
+
+}
+
+
+.target-options button:active {
+
+    transform: scale(0.95);
+
+}
+
+/* Exam Form Blue Theme */
+
+.form-box select,
+.form-box input {
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    margin: 8px 0;
+
+    border-radius: 12px;
+
+    border: 1px solid #bfdbfe;
+
+    background: #eff6ff;
+
+    color: #1e3a8a;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.25s ease;
+
+}
+
+
+.form-box select:focus,
+.form-box input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.15);
+
+}
+
+
+
+/* Target buttons */
+
+.target-options button {
+
+    padding: 12px 20px;
+
+    margin: 5px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #3b82f6);
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+
+}
+
+
+.target-options button:hover {
+
+    transform: translateY(-4px);
+
+    background: linear-gradient(135deg,
+            #1d4ed8,
+            #2563eb);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.35);
+
+}
+
+
+
+/* Subject dropdown */
+
+#subject {
+
+    background: linear-gradient(135deg,
+            #eff6ff,
+            #dbeafe);
+
+}
+
+
+
+/* Date */
+
+#date {
+
+    background: linear-gradient(135deg,
+            #e0f2fe,
+            #bae6fd);
+
+}
+
+
+
+/* Importance */
+
+#importance {
+
+    background: linear-gradient(135deg,
+            #dbeafe,
+            #bfdbfe);
+
+}
+
+
+
+/* Target custom input */
+
+#target_percentage {
+
+    background: linear-gradient(135deg,
+            #f0f9ff,
+            #e0f2fe);
+
+}
+
+
+
+/* Add Exam button */
+
+.form-box>button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #1d4ed8,
+            #60a5fa);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+
+}
+
+
+.form-box>button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.4);
+
+}
