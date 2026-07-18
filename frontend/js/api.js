@@ -1,4 +1,4 @@
-const API_URL = "https://phrase-brethren-retrain.ngrok-free.dev";
+const API_URL = "https://arvora-backend.onrender.com";
 
 async function loginRequest(username, password) {
 
