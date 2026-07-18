@@ -6,7 +6,7 @@ async function loadSessions() {
 
 
     let res = await fetch(
-        "http://127.0.0.1:8000/study-session",
+        "https://arvora-backend.onrender.com/study-session",
         {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -92,7 +92,7 @@ async function addSession() {
         document.getElementById("chapter").value;
 
     let res = await fetch(
-        "http://127.0.0.1:8000/study-session",
+        "https://arvora-backend.onrender.com/study-session",
         {
             method: "POST",
 
@@ -132,7 +132,7 @@ async function addSession() {
 async function deleteSession(id) {
 
     let res = await fetch(
-        `http://127.0.0.1:8000/study-session/${id}`,
+        `https://arvora-backend.onrender.com/study-session/${id}`,
         {
             method: "DELETE",
             headers: {
@@ -174,7 +174,7 @@ function closeEditModal() {
 async function saveEdit() {
 
     let res = await fetch(
-        `http://127.0.0.1:8000/study-session/${editingSessionId}`,
+        `https://arvora-backend.onrender.com/study-session/${editingSessionId}`,
         {
             method: "PUT",
 

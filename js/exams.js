@@ -2,7 +2,7 @@ let currentExamId = null;
 
 async function loadExams() {
     try {
-        let res = await fetch("http://127.0.0.1:8000/exams", {
+        let res = await fetch("https://arvora-backend.onrender.com/exams", {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
@@ -59,7 +59,7 @@ async function addExam() {
     let target = document.getElementById("target_percentage").value;
     let importance = document.getElementById("importance").value;
 
-    let res = await fetch("http://127.0.0.1:8000/exams", {
+    let res = await fetch("https://arvora-backend.onrender.com/exams", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -81,7 +81,7 @@ async function addExam() {
 
 async function deleteExam(id) {
 
-    let res = await fetch(`http://127.0.0.1:8000/exams/${id}`, {
+    let res = await fetch(`https://arvora-backend.onrender.com/exams/${id}`, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -121,7 +121,7 @@ async function saveEdit() {
         document.getElementById("editImportance").value;
 
     await fetch(
-        `http://127.0.0.1:8000/exams/${currentExamId}`,
+        `https://arvora-backend.onrender.com/exams/${currentExamId}`,
         {
             method: "PUT",
             headers: {

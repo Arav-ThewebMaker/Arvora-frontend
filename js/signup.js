@@ -40,7 +40,7 @@ async function signup() {
 
         const response =
             await fetch(
-                "http://127.0.0.1:8000/register",
+                "https://arvora-backend.onrender.com/register",
                 {
 
                     method: "POST",
