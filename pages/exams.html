@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exams</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div id="sidebar"></div>
+
+    <div id="content">
+
+        <h1>Exams</h1>
+
+        <!-- ADD EXAM FORM -->
+        <div class="form-box">
+
+            <select id="subject" onchange="checkCustomSubject()">
+
+                <option value="">
+                    Select subject
+                </option>
+
+                <option value="Math">
+                    📐 Mathematics
+                </option>
+
+                <option value="Science">
+                    🔬 Science
+                </option>
+
+                <option value="English">
+                    📘 English
+                </option>
+
+                <option value="Social">
+                    🌍 Social Studies
+                </option>
+
+                <option value="custom">
+                    ➕ Custom subject
+                </option>
+
+            </select>
+
+
+            <input id="customSubject" placeholder="Enter subject name" style="display:none;">
+            <input id="date" type="date" onchange="recommendImportance()">
+            <div class="target-options">
+
+                <p>🎯 Target percentage</p>
+
+                <button onclick="setTarget(40)">
+                    🛡️ Pass (40%)
+                </button>
+
+                <button onclick="setTarget(60)">
+                    📈 Good (60%)
+                </button>
+
+                <button onclick="setTarget(80)">
+                    🔥 Strong (80%)
+                </button>
+
+                <button onclick="setTarget(90)">
+                    👑 Excellent (90%)
+                </button>
+
+            </div>
+
+
+            <input id="target_percentage" type="number" placeholder="Custom">
+            <select id="importance">
+
+                <option value="1">
+                    🟢 Low
+                </option>
+
+                <option value="3" selected>
+                    🟡 Medium
+                </option>
+
+                <option value="5">
+                    🔴 High
+                </option>
+
+            </select>
+            <button onclick="addExam()">Add Exam</button>
+
+        </div>
+
+        <!-- EXAMS LIST -->
+        <div id="examList"></div>
+
+    </div>
+
+    <div id="editModal" class="modal">
+
+        <div class="modal-content">
+
+            <h2>Edit Exam</h2>
+
+            <input id="editSubject" placeholder="Subject">
+            <input id="editDate" type="date">
+            <input id="editTarget" placeholder="Target %">
+            <select id="editImportance">
+
+                <option value="1">
+                    Low
+                </option>
+
+                <option value="3">
+                    Medium
+                </option>
+
+                <option value="5">
+                    High
+                </option>
+
+            </select>
+            <button onclick="saveEdit()">Save</button>
+            <button onclick="closeModal()">Cancel</button>
+
+        </div>
+
+    </div>
+
+    <script src="../js/nav.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/exams.js"></script>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            loadSidebar();
+            loadExams();
+        });
+    </script>
+
+</body>
+
+</html>
