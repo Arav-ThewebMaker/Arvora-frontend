@@ -1,4 +1,4 @@
-const API_URL = "https://phrase-brethren-retrain.ngrok-free.dev";
+const API_URL = "https://arvora-backend.onrender.com";
 
 async function loginRequest(username, password) {
 
@@ -26,7 +26,7 @@ async function getDashboard() {
     let token = localStorage.getItem("token");
 
     let response = await fetch(
-        "http://127.0.0.1:8000/dashboard?study_time=60",
+        `${API_URL}/dashboard?study_time=60`,
         {
             headers: {
                 Authorization: `Bearer ${token}`
