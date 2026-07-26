@@ -4,6 +4,11 @@ async function loadDashboard() {
 
     let token = localStorage.getItem("token");
 
+    if (!token) {
+        console.log("No token found");
+        window.location.href = "login.html";
+        return;
+    }
     let response = await fetch(
         "https://arvora-backend.onrender.com/dashboard?study_time=60",
         {
@@ -14,6 +19,11 @@ async function loadDashboard() {
     );
 
     let data = await response.json();
+
+    if (!response.ok) {
+        console.log(data);
+        return;
+    }
 
     let progress = 10;
 
