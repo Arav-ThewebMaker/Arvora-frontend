@@ -5,7 +5,7 @@ async function loadDashboard() {
     let token = localStorage.getItem("token");
 
     let response = await fetch(
-        "http://127.0.0.1:8000/dashboard?study_time=60",
+        "https://arvora-backend.onrender.com/dashboard?study_time=60",
         {
             headers: {
                 Authorization: `Bearer ${token}`
