@@ -108,8 +108,8 @@ async function loadDashboard() {
 
     // Subject
     document.getElementById("topSubject").innerText =
-        data.most_studied_subject.top_subject
-            ? `📖 ${data.most_studied_subject.top_subject}`
+        data.most_studied_subject.subject
+            ? `📖 ${data.most_studied_subject.subject}`
             : "📖 No study sessions";
 
     // Productive Day
