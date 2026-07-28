@@ -2,15 +2,17 @@ body {
     margin: 0;
     font-family: Arial;
     display: flex;
-    background: #f5f6fa;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
 }
 
 /* Sidebar */
 .sidebar {
     width: 200px;
     height: 100vh;
-    background: #0b1220;
-    color: rgb(255, 255, 255);
+    background: var(--sidebar-bg);
+    color: var(--text);
     padding: 20px;
 
     display: flex;
@@ -70,7 +72,7 @@ body {
 }
 
 .card {
-    background: white;
+    background: var(--card-bg);
     padding: 14px;
     border-radius: 12px;
     min-height: 90px;
@@ -100,7 +102,7 @@ body {
     font-weight: bold;
     margin-top: 6px;
     margin-bottom: 0;
-    color: #0f172a;
+    color: var(--text);
 }
 
 .card:hover {
@@ -111,7 +113,7 @@ body {
     margin: 0;
     font-size: 13px;
     font-weight: 600;
-    color: #64748b;
+    color: var(--secondary-text);
 }
 
 .card:nth-child(1) {
@@ -135,7 +137,7 @@ body {
 }
 
 .login-container {
-    background: white;
+    background: var(--card-bg);
     padding: 40px;
     border-radius: 12px;
     width: 300px;
@@ -175,7 +177,7 @@ body {
 }
 
 .form-box {
-    background: white;
+    background: var(--card-bg);
     padding: 15px;
     border-radius: 10px;
     display: flex;
@@ -191,7 +193,7 @@ body {
 }
 
 .exam-card {
-    background: white;
+    background: var(--card-bg);
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -226,7 +228,7 @@ body {
 }
 
 .modal-content {
-    background: white;
+    background: var(--card-bg);
 
     padding: 25px;
 
@@ -265,13 +267,13 @@ h2 {
 
     width: 190px;
 
-    background: white;
+    background: var(--card-bg);
 
     border-radius: 12px;
 
     padding: 14px;
 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 15px var(--shadow);
 
     display: block;
 }
@@ -335,7 +337,7 @@ h2 {
 
 .welcome-card {
 
-    background: white;
+    background: var(--card-bg);
 
     padding: 25px;
 
@@ -407,7 +409,7 @@ h2 {
 
 .welcome-card {
 
-    background: white;
+    background: var(--card-bg);
 
     padding: 25px;
 
@@ -664,9 +666,9 @@ h2 {
 
     border: 1px solid #bfdbfe;
 
-    background: #eff6ff;
+    background: var(--input-bg);
 
-    color: #1e3a8a;
+    color: var(--text);
 
     font-size: 15px;
 
@@ -816,5 +818,73 @@ h2 {
 
     box-shadow:
         0 12px 30px rgba(37, 99, 235, 0.4);
+
+}
+
+:root {
+    --bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --sidebar-bg: #0b1220;
+    --text: #0f172a;
+    --secondary-text: #64748b;
+    --border: #dddddd;
+    --input-bg: #eff6ff;
+    --primary: #38bdf8;
+    --shadow: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+    --bg: #020617;
+    --card-bg: #0f172a;
+    --sidebar-bg: #020617;
+    --text: #f8fafc;
+    --secondary-text: #94a3b8;
+    --border: #334155;
+    --input-bg: #1e293b;
+    --primary: #38bdf8;
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#themeToggle {
+
+    border: none;
+    background: var(--card-bg);
+
+    color: var(--text);
+
+    font-size: 20px;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px var(--shadow);
+
+    transition: 0.3s;
+
+}
+
+
+#themeToggle:hover {
+
+    transform: rotate(20deg) scale(1.1);
+
+}
+
+.secondary-text {
+
+    color: var(--secondary-text);
+
+    font-size: 14px;
 
 }

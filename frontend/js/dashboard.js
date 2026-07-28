@@ -1,4 +1,79 @@
-console.log("dashboard loaded");
+// Load saved theme
+
+if (localStorage.getItem("theme") === "dark") {
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        "dark"
+    );
+
+}
+
+
+// Theme button
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const button =
+            document.getElementById("themeToggle");
+
+
+        if (button) {
+
+            button.onclick = () => {
+
+
+                const dark =
+                    document.documentElement
+                        .getAttribute("data-theme")
+                    === "dark";
+
+
+                if (dark) {
+
+                    document.documentElement
+                        .removeAttribute(
+                            "data-theme"
+                        );
+
+                    localStorage.setItem(
+                        "theme",
+                        "light"
+                    );
+
+                    button.innerHTML = "🌙";
+
+                }
+
+                else {
+
+                    document.documentElement
+                        .setAttribute(
+                            "data-theme",
+                            "dark"
+                        );
+
+
+                    localStorage.setItem(
+                        "theme",
+                        "dark"
+                    );
+
+
+                    button.innerHTML = "☀️";
+
+                }
+
+
+            };
+
+
+        }
+
+
+    });
 
 async function loadDashboard() {
 
@@ -57,7 +132,7 @@ async function loadDashboard() {
     // Performance
     document.getElementById("performanceScore").innerHTML =
         `🎯 ${data.performance_score.score}%<br>
-    <span style="font-size:14px;color:#64748b;">
+    <span class="secondary-text">
         ${data.performance_score.grade}
     </span>`;
 
@@ -284,17 +359,20 @@ async function loadDashboard() {
                     beginAtZero: true,
 
                     grid: {
-                        color: "#f9fafc"
+                        color: getComputedStyle(document.documentElement)
+                            .getPropertyValue("--border")
                     },
 
                     ticks: {
-                        color: "rgb(0, 0, 0)"
+                        color: getComputedStyle(document.documentElement)
+                            .getPropertyValue("--text")
                     },
 
                     title: {
                         display: true,
                         text: "Minutes",
-                        color: "rgb(0, 0, 0)"
+                        color: getComputedStyle(document.documentElement)
+                            .getPropertyValue("--text")
                     }
 
                 },
@@ -306,13 +384,15 @@ async function loadDashboard() {
                     },
 
                     ticks: {
-                        color: "rgb(0, 0, 0)"
+                        color: getComputedStyle(document.documentElement)
+                            .getPropertyValue("--text")
                     },
 
                     title: {
                         display: true,
                         text: "Day",
-                        color: "rgb(0, 0, 0)"
+                        color: getComputedStyle(document.documentElement)
+                            .getPropertyValue("--text")
                     }
 
                 }
@@ -365,7 +445,9 @@ async function loadDashboard() {
 
                 borderWidth: 2,
 
-                borderColor: "#ffffff",
+                borderColor:
+                    getComputedStyle(document.documentElement)
+                        .getPropertyValue("--card-bg"),
 
                 hoverOffset: 18
 
