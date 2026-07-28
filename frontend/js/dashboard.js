@@ -1,84 +1,87 @@
+const themeButton = document.getElementById("themeToggle");
+
+
 // Load saved theme
 
-if (localStorage.getItem("theme") === "dark") {
+let savedTheme = localStorage.getItem("theme");
+
+
+if (savedTheme === "dark") {
 
     document.documentElement.setAttribute(
         "data-theme",
         "dark"
     );
 
+    if (themeButton)
+        themeButton.innerHTML = "☀️ Light Mode";
+
 }
 
 
-// Theme button
+// Toggle
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+if (themeButton) {
 
-        const button =
-            document.getElementById("themeToggle");
+    themeButton.onclick = () => {
 
 
-        if (button) {
-
-            button.onclick = () => {
-
-
-                const dark =
-                    document.documentElement
-                        .getAttribute("data-theme")
-                    === "dark";
+        let current =
+            document.documentElement.getAttribute(
+                "data-theme"
+            );
 
 
-                if (dark) {
+        if (current === "dark") {
 
-                    document.documentElement
-                        .removeAttribute(
-                            "data-theme"
-                        );
+            document.documentElement.removeAttribute(
+                "data-theme"
+            );
 
-                    localStorage.setItem(
-                        "theme",
-                        "light"
-                    );
+            localStorage.setItem(
+                "theme",
+                "light"
+            );
 
-                    button.innerHTML = "🌙";
+            themeButton.innerHTML =
+                "🌙 Dark Mode";
 
-                }
+        }
 
-                else {
-
-                    document.documentElement
-                        .setAttribute(
-                            "data-theme",
-                            "dark"
-                        );
+        else {
 
 
-                    localStorage.setItem(
-                        "theme",
-                        "dark"
-                    );
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
 
 
-                    button.innerHTML = "☀️";
+            localStorage.setItem(
+                "theme",
+                "dark"
+            );
 
-                }
 
-
-            };
-
+            themeButton.innerHTML =
+                "☀️ Light Mode";
 
         }
 
 
-    });
+    };
+
+}
 
 async function loadDashboard() {
 
     let token = localStorage.getItem("token");
 
+    if (!token) {
+        console.log("No token found");
+        window.location.href = "login.html";
+        return;
+    }
     let response = await fetch(
         "https://arvora-backend.onrender.com/dashboard?study_time=60",
         {
@@ -89,6 +92,11 @@ async function loadDashboard() {
     );
 
     let data = await response.json();
+
+    if (!response.ok) {
+        console.log(data);
+        return;
+    }
 
     let progress = 10;
 
@@ -132,7 +140,7 @@ async function loadDashboard() {
     // Performance
     document.getElementById("performanceScore").innerHTML =
         `🎯 ${data.performance_score.score}%<br>
-    <span class="secondary-text">
+    <span style="font-size:14px;color:#64748b;">
         ${data.performance_score.grade}
     </span>`;
 
@@ -173,8 +181,8 @@ async function loadDashboard() {
 
     // Subject
     document.getElementById("topSubject").innerText =
-        data.most_studied_subject.top_subject
-            ? `📖 ${data.most_studied_subject.top_subject}`
+        data.most_studied_subject.subject
+            ? `📖 ${data.most_studied_subject.subject}`
             : "📖 No study sessions";
 
     // Productive Day
@@ -359,20 +367,17 @@ async function loadDashboard() {
                     beginAtZero: true,
 
                     grid: {
-                        color: getComputedStyle(document.documentElement)
-                            .getPropertyValue("--border")
+                        color: "#f9fafc"
                     },
 
                     ticks: {
-                        color: getComputedStyle(document.documentElement)
-                            .getPropertyValue("--text")
+                        color: "rgb(0, 0, 0)"
                     },
 
                     title: {
                         display: true,
                         text: "Minutes",
-                        color: getComputedStyle(document.documentElement)
-                            .getPropertyValue("--text")
+                        color: "rgb(0, 0, 0)"
                     }
 
                 },
@@ -384,15 +389,13 @@ async function loadDashboard() {
                     },
 
                     ticks: {
-                        color: getComputedStyle(document.documentElement)
-                            .getPropertyValue("--text")
+                        color: "rgb(0, 0, 0)"
                     },
 
                     title: {
                         display: true,
                         text: "Day",
-                        color: getComputedStyle(document.documentElement)
-                            .getPropertyValue("--text")
+                        color: "rgb(0, 0, 0)"
                     }
 
                 }
@@ -445,9 +448,7 @@ async function loadDashboard() {
 
                 borderWidth: 2,
 
-                borderColor:
-                    getComputedStyle(document.documentElement)
-                        .getPropertyValue("--card-bg"),
+                borderColor: "#ffffff",
 
                 hoverOffset: 18
 

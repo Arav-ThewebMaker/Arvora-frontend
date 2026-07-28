@@ -1,4 +1,83 @@
-console.log("dashboard loaded");
+const themeButton = document.getElementById("themeToggle");
+
+
+// Load saved theme
+
+let savedTheme = localStorage.getItem("theme");
+
+
+if (savedTheme === "dark") {
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        "dark"
+    );
+
+    if (themeButton)
+        themeButton.innerHTML = "☀️ Light Mode";
+
+    else {
+
+        if (themeButton)
+            themeButton.innerHTML = "🌙 Dark Mode";
+
+    }
+}
+
+
+// Toggle
+
+if (themeButton) {
+
+    themeButton.onclick = () => {
+
+
+        let current =
+            document.documentElement.getAttribute(
+                "data-theme"
+            );
+
+
+        if (current === "dark") {
+
+            document.documentElement.removeAttribute(
+                "data-theme"
+            );
+
+            localStorage.setItem(
+                "theme",
+                "light"
+            );
+
+            themeButton.innerHTML =
+                "🌙 Dark Mode";
+
+        }
+
+        else {
+
+
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
+            );
+
+
+            localStorage.setItem(
+                "theme",
+                "dark"
+            );
+
+
+            themeButton.innerHTML =
+                "☀️ Light Mode";
+
+        }
+
+
+    };
+
+}
 
 async function loadDashboard() {
 
@@ -206,6 +285,8 @@ async function loadDashboard() {
 
     // Weekly Study Graph
 
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+
     const labels = data.weekly_graph.map(item => item.day);
     const minutes = data.weekly_graph.map(item => item.minutes);
 
@@ -304,7 +385,7 @@ async function loadDashboard() {
                     title: {
                         display: true,
                         text: "Minutes",
-                        color: "rgb(0, 0, 0)"
+                        color: dark ? "#f8fafc" : "#000"
                     }
 
                 },
@@ -316,13 +397,13 @@ async function loadDashboard() {
                     },
 
                     ticks: {
-                        color: "rgb(0, 0, 0)"
+                        color: dark ? "#f8fafc" : "#000"
                     },
 
                     title: {
                         display: true,
                         text: "Day",
-                        color: "rgb(0, 0, 0)"
+                        color: dark ? "#f8fafc" : "#000"
                     }
 
                 }
